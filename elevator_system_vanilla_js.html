@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Elevator System</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <h1>Elevator System (10 floors, 5 elevators)</h1>
+  <div class="app">
+    <div class="floors" id="floors">
+      <!-- Floor numbers: 9 (top) down to 0 ground -->
+      <!-- Render them in markup to respect the constraint -->
+      <!-- Each button has data-floor attribute -->
+      <script>
+        const floorsContainer = `
+        ${Array.from({length:10}).map((_,i)=>{
+          const floor = 9 - i; // top to bottom
+          return `<div class=\"floor\">\n  <div class=\"meta\">\n    <div class=\"label\">Tầng ${floor}</div>\n    <div class=\"sub\">${floor===0? 'Ground floor':'Level ' + floor}</div>\n  </div>\n  <button class=\"call-btn\" data-floor=\"${floor}\">Call</button>\n</div>`
+        }).join('\n')}
+        `;
+        document.write(floorsContainer);
+      </script>
+    </div>
+
+    <div class="shaft-wrap">
+      <div class="shaft" id="shaft">
+        <div class="elevators" id="elevators"></div>
+        <!-- floor lines and labels -->
+        <script>
+          // Render floor lines and labels inside shaft (static layout)
+          const floors = 10;
+          const floorHeight = 70; // must match CSS var for consistent visuals
+          let floorLines = '';
+          for(let f=0; f<floors; f++){
+            const y = f * floorHeight; // top-based
+            const floorNum = floors - 1 - f; // convert to label (top->9)
+            floorLines += `<div class=\"floor-line\" style=\"top:${y}px\"></div>`;
+            floorLines += `<div class=\"floor-label\" style=\"top:${y + 8}px\">T${floorNum}</div>`;
+          }
+          document.write(floorLines);
+        </script>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/main.js">
+  </script>
+</body>
+</html>
