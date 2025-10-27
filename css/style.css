@@ -51,6 +51,13 @@
     /* elevator lane labels */
     .lanes{position:absolute;right:-120px;top:12px;bottom:12px;display:flex;flex-direction:column;gap:6px}
     .lane{height:var(--floor-height);display:flex;align-items:center}
-
+    .flag-out-service{color:#c0392b;}
+    .elevator.out {
+      background-color: #8b0000; 
+      opacity: 0.4;              
+      filter: grayscale(60%);    
+      transform: scale(0.98);    
+      pointer-events: none;     
+    }
     /* small responsive */
     @media (max-width:900px){.shaft-wrap{flex-direction:column}.shaft{width:100%;height:calc(var(--floors) * var(--floor-height)/1.2)}}
